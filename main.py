@@ -1,6 +1,6 @@
-def main():
-    print("Hello from pythonic-data-analysis!")
+from plotlypractice.die import Die
 
 
 if __name__ == "__main__":
-    main()
+    die = Die()
+    print(die.roll())
