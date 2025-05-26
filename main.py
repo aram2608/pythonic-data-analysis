@@ -1,6 +1,5 @@
-from plotlypractice.die import Die
+def main():
+    return "Hello World!"
 
-
-if __name__ == "__main__":
-    die = Die()
-    print(die.roll())
+if __name__== "__main__":
+    print(main())
