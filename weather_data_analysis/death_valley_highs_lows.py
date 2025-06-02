@@ -22,6 +22,8 @@ for row in reader:
         low = int(row[4])
     except ValueError:
         print(f"Missing data for {current_date}")
+        # this line just lets us know which date is missing, we could have deleted it instead using remove() or del
+        # or just skipped over it completely using continue if we don't care about knowing if its missing or not
     else:
         dates.append(current_date)
         highs.append(high)
