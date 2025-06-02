@@ -3,24 +3,29 @@ import csv
 import matplotlib.pyplot as plt
 from datetime import datetime
 
-path = Path('/Users/ja1473/pythonic-data-analysis/weather_data/sitka_weather_2021_simple.csv')
+path = Path('/Users/ja1473/pythonic-data-analysis/weather_data/death_valley_2021_simple.csv')
 lines = path.read_text(encoding='utf-8').splitlines()
 
 reader = csv.reader(lines)
 header_row = next(reader)
 
-for index, column_name in enumerate(header_row):
-    print(index, column_name)
+for index, column_header in enumerate(header_row):
+    print(index, column_header)
 
 # Extract high temperatures
 dates, highs, lows = [], [], []
 for row in reader:
     current_date = datetime.strptime(row[2], '%Y-%m-%d')
-    high = int(row[4])
-    low = int(row[5])
-    dates.append(current_date)
-    highs.append(high)
-    lows.append(low)
+    try: # this one is able to hand errors gracefully rather than crash the whole program
+        # very slick
+        high = int(row[3])
+        low = int(row[4])
+    except ValueError:
+        print(f"Missing data for {current_date}")
+    else:
+        dates.append(current_date)
+        highs.append(high)
+        lows.append(low)
 
 # Plotting the high temperatures
 plt.style.use('seaborn-v0_8')
